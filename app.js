@@ -1,5 +1,10 @@
-// INITIALIZING WEATHER OBJECT
-const weather = new Weather('BALNEARIO CAMBORIU', 'BR');
+// INITIALIZING CLASS OBJECTS
+const storage = new Storage();
+
+// GET STORED LOCATION DATA
+const weatherLocation = storage.getLocationData();
+
+const weather = new Weather(weatherLocation.city, weatherLocation.country);
 const ui = new UI();
 
 // GET WEATHER ON PAGE LOAD
@@ -11,6 +16,8 @@ document.getElementById('change-btn').addEventListener('click', event => {
   const country = document.getElementById('country').value;
 
   weather.changeLocation(city, country);
+
+  storage.setLocationData(city, country);
 
   getWeather();
 
